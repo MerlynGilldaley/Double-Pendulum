@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import math
 
-
+"""The Class "Double PEndulum" uses the imputs of the masses of the particles, the lengths of the strings and the initial angle of the 2 pendulums
+   to define the motion of the double pendulum using the Euler method of integration"""
 
 class Double_Pendulum():
 
@@ -19,12 +20,6 @@ class Double_Pendulum():
         self.time = time
         self.g = g
 
-    """def update_angle(self, dt):
-        self.d_theta1 = self.omega1 * dt
-        self.d_omega1 = (-self.g*(2*self.mass1+self.mass2)*np.sin(self.theta1)-self.mass2*self.g*np.sin(self.theta1+2*self.theta2)-2*np.sin(self.theta1-self.theta2)*self.mass2*(self.omega2**2*self.length2+self.omega1**2*self.length1*np.cos(self.theta1-self.theta2)))/(self.length1*(2*self.mass1+self.mass2-self.mass2*np.cos(2*self.theta1-2*self.theta2)))*dt
-        self.d_theta2 = self.omega2 * dt
-        self.d_omega2 = (2*np.sin(self.theta1-self.theta2)*(self.omega1**2*self.length1*(self.mass1+self.mass2)+self.g*(self.mass1+self.mass2)*np.cos(self.theta1)+self.omega2**2*self.length2*self.mass2*np.cos(self.theta1-self.theta2)))/(self.length2*(2*self.mass1+self.mass2-self.mass2*np.cos(2*self.theta1-2*self.theta2))) * dt
-        self.time = (self.time*dt)"""
 
     """Uses the Euler method of integration to update the angle and angular acceleration of both pendulums"""    
     def euler(self, dt):
@@ -42,29 +37,3 @@ class Double_Pendulum():
         self.time = self.time + dt
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    def trapezoidal_rule(f, a, b, n):
-        h = (b - a) / n
-        sum = 0.5 * (f(a) + f(b))
-        for i in range(1, n):
-            sum += f(a + i * h)
-        return sum * h
-
-

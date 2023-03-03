@@ -15,17 +15,20 @@ class Conservation(Double_Pendulum):
     """Function to define the velocity of both masses in the pendulum in the x and y direction"""
     def energy(self):
 
-        self.velocity1_x = self.length1*np.cos(self.theta1)
-        self.velocity1_y = self.length1 * np.sin(self.theta1)
+        #self.velocity1_x = self.length1*np.cos(self.theta1)
+        #self.velocity1_y = self.length1 * np.sin(self.theta1)
 
-        self.velocity2_x = self.velocity1_x + self.length2*np.cos(self.theta2)
-        self.velocity2_y = self.velocity1_y + self.length2*np.sin(self.theta2)
+        #self.velocity2_x = self.velocity1_x + self.length2*np.cos(self.theta2)
+        #self.velocity2_y = self.velocity1_y + self.length2*np.sin(self.theta2)
+        
+        velocity1 = self.length1 * self.omega1
+        velocity2 = self.length2 * self.omega2
 
     
 
         #self.kinetic_energy = (1/2)*self.mass1*((self.velocity1_x)**2 + (self.velocity1_y)**2) + (1/2)*self.mass2*((self.velocity2_x)**2+(self.velocity2_y)**2)
-        self.kinetic_energy = (1/2)*(self.mass1+self.mass2)*self.length1**2*self.omega1**2 + 1/2 * self.mass2*self.length2**2*self.omega2**2 + self.mass2*self.length1*self.length2*self.omega1*self.omega2*np.cos(self.theta1 - self.theta2)
+        self.kinetic_energy = -(1/2)*(self.mass1+self.mass2)*velocity1**2 + 1/2 * self.mass2*velocity2**2 + self.mass2*velocity1 * velocity2 *np.cos(self.theta1 - self.theta2)
     
 
-        self.potential_energy = (self.mass1)*self.g*self.length1*np.cos(self.theta1) + self.mass2*self.g*self.length2*np.cos(self.theta2)
+        self.potential_energy = -((self.mass1)*self.g*self.length1*np.cos(self.theta1) + self.mass2*self.g*self.length2*np.cos(self.theta2))
 

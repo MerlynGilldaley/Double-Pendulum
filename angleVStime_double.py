@@ -8,7 +8,7 @@ from Pendulum2 import Double_Pendulum
     It then uses the Euler method of numerical integration to update the angles and angular accelerations
     Both angles are then plotted against time and the x and y coordinates are calculated and plotted"""
 
-Pendulum = Double_Pendulum(1, 1, 1, 1, np.pi/4, np.pi/4, 0, 0, 0)
+Pendulum = Double_Pendulum(1, 1, 1, 2, np.pi/4, np.pi/4, 0, 0, 0)
 
 while Pendulum.theta1 >= 2*np.pi:
     Pendulum.theta1 = Pendulum.theta1 - 2*np.pi

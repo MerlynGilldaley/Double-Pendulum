@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from Pendulum2 import Double_Pendulum
 from Conservation_laws import Conservation
 
-Pendulum = Conservation(1, 1, 1, 1, np.pi/4, np.pi/4, 0, 0, 0, 0, 0)
+Pendulum = Conservation(1, 1, 1, 1, np.pi/4, np.pi/4, 0, 0, 0, 0, 19.61)
 
 while Pendulum.theta1 >= 2*np.pi:
     Pendulum.theta1 = Pendulum.theta1 - 2*np.pi
@@ -18,10 +18,6 @@ while Pendulum.theta2 >= 2*np.pi:
     #Why does this stop working at theta2 > 13*pi???
 
 Time = np.array(Pendulum.time)
-Theta1=np.array(Pendulum.theta1)
-Omega1=np.array(Pendulum.omega1)
-Theta2=np.array(Pendulum.theta2)
-Omega2=np.array(Pendulum.omega2)
 
 KE = np.array(Pendulum.kinetic_energy)
 PE = np.array(Pendulum.potential_energy)
@@ -32,10 +28,7 @@ for i in range(0, 200):
 
     
     Time = np.append(Time, Pendulum.time)
-    Theta1 = np.append(Theta1, Pendulum.theta1)
-    Omega1 = np.append(Omega1, Pendulum.omega1)
-    Theta2 = np.append(Theta2, Pendulum.theta2)
-    Omega2 = np.append(Omega2, Pendulum.omega2)
+
 
     Pendulum.energy()
 
