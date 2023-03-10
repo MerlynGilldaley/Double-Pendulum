@@ -29,40 +29,30 @@ class Pendulum():
     
     def runge_kutta(self, dt):
         
-        
-        #x = np.array(self.theta_0, self.omega_0)
-        
-        #x_dot = np.array(self.omega_0, -self.g/self.length * np.sin(self.theta_0))
-        #theta_dot = self.omega_0
-        omega_dot = -self.g/self.length * np.sin(self.theta_0)
+        def theta_dot(omega_0):
+            return omega_0
+        def omega_dot(theta_0):
+            return -(self.g/self.length)*np.sin(theta_0)
         
         
-        #k1 = x_dot * dt
-        #k1_theta = theta_dot * dt
-        k1_omega = omega_dot * dt
         
-        #k2 = dt * np.array(x_dot[0] + k1[0]/2, x_dot[1] + k1[1]/2)
-        #k2_theta = (theta_dot + k1_theta/2) * dt
-        k2_omega = (omega_dot+ k1_omega/2) * dt      
-                
-        #k3 = dt * np.array(x_dot[0]+k2[0]/2, x_dot[1]+k2[1]/2)
-        #k3_theta = (theta_dot + k2_theta/2) * dt
-        k3_omega = (omega_dot + k2_omega/2) * dt        
+        k1 = theta_dot(self.omega_0) #* dt
+        m1 = omega_dot(self.theta_0) #* dt
         
-        #k4 = dt * np.array(x_dot[0]+k3[0], x_dot[1]+k3[1])
-        #k4_theta = (theta_dot + k3_theta) * dt
-        k4_omega = (omega_dot + k3_omega) * dt      
+        k2 = theta_dot(self.omega_0 + 1/2 * m1 * dt)
+        m2 = omega_dot(self.theta_0 + 1/2 * k1 * dt)
         
-        #x = x + 1/6 * (k1+ 2*k2 + 2*k3 +k4)
-               
+        k3 = theta_dot(self.omega_0 + 1/2 * m2 * dt)
+        m3 = omega_dot(self.theta_0 + 1/2 * k2 * dt)
         
-        
-        #self.theta_0 = self.theta_0 + 1/6 * (k1_theta + 2*k2_theta + 2*k3_theta + k4_theta) * dt 
-        
-        self.omega_0 = self.omega_0 + 1/6 * (k1_omega + 2*k2_omega + 2*k3_omega + k4_omega)
-        self.theta_0 = self.theta_0 + self.omega_0 * dt
-        self.time = self.time + dt
+        k4 = theta_dot(self.omega_0 + m3 * dt)
+        m4 = omega_dot(self.theta_0 + k3 * dt)
 
+        
+        
+        self.theta_0 = self.theta_0 + 1/6 * (k1 + 2*k2 + 2*k3 + k4) * dt
+        self.omega_0 = self.omega_0 + 1/6 * (m1 + 2*m2 + 2*m3 + m4) * dt
+        self.time = self.time+dt
 
 
 
