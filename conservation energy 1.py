@@ -79,6 +79,7 @@ plt.plot(time3, KE_3+PE_3, "orange", label="Total Energy")
 plt.xlabel("Time")
 plt.ylabel("Energy")
 plt.legend()
+plt.tight_layout()
 plt.show()
 
 plt.plot(time1, KE_1+PE_1, "r", label = "Euler")
@@ -88,6 +89,7 @@ plt.legend()
 #plt.ylim(-0.225, -0.150)
 plt.xlabel("Time")
 plt.ylabel("Energy")
+
 plt.show()
 
 total_1 = KE_1 + PE_1
